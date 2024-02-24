@@ -9,12 +9,14 @@ export const state = reactive({
     country_api_url: 'https://api.themoviedb.org/3/configuration/countries?api_key=c57edb92da6d3be4a161139756c3ceae',
     translations_api_url: 'https://api.themoviedb.org/3/configuration/primary_translations?api_key=c57edb92da6d3be4a161139756c3ceae',
     //Array d'appoggio per la lista di film richiesta
-    movies: [],  
+    movies: [],
     //Oggetto d'appoggio utilizzato per la corrispondenza tra lingua e bandiera
     LtoF: {},
     //Arrays di appoggio per le sigle, rispettivamente, di lingua e bandiera
     arrayLang: [],
     arrayFlag: [],
+    //Array di appoggio utilizzato per le lingue senza bandiera
+    arrayLangNoFlag: [],
     //Chiamata axios principare dove si richiede la lista dei film
     fetchData(url) {
         axios.get(url)
@@ -32,7 +34,7 @@ export const state = reactive({
             })
     },
     //Chiamata axios per richiedere la lista delle traduzioni primarie (primary_translations)
-    fetchLang(url) {
+    fetchLangtoFlag(url) {
         axios.get(url)
             .then(response => {
                 response.data.forEach(translation => {
@@ -48,7 +50,7 @@ export const state = reactive({
                     this.LtoF[this.arrayLang[i]] = this.arrayFlag[i];
 
                 };
-                
+
                 //Richiamo la funzione per correggere alcune bandiere
                 this.adjustmentFlag();
                 console.log(this.LtoF);
@@ -74,8 +76,21 @@ export const state = reactive({
         this.LtoF.sq = 'al';
         this.LtoF.sr = 'rs';
         this.LtoF.zh = 'cn';
+    },
+    //Chiamata axios per prendere tutte le lingue e poter ottenere il nome della lingua, per esteso, in inglese
+    fetchLanguages(url) {
+        axios.get(url)
+            .then(response => {
+                console.log(response.data);
+                response.data.forEach(lang => {
+                    this.arrayLangNoFlag.push(lang);
+                });
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
     }
-
-
-
+    
 })
