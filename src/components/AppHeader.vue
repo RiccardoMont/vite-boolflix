@@ -15,10 +15,7 @@ export default {
             if(this.movieSearched != ''){
             state.movies = [];
             const newResearch = `${state.base_api_url}${this.movieSearched}`;
-            console.log(newResearch);
             state.fetchData(newResearch);
-            console.log(this.movieSearched);
-            console.log(state.movies);
             }
         }
     }

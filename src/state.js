@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const state = reactive({
 
+
     api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=troy',
     base_api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=',
     lang_api_url: 'https://api.themoviedb.org/3/configuration/languages?api_key=c57edb92da6d3be4a161139756c3ceae',
@@ -15,8 +16,9 @@ export const state = reactive({
     //Arrays di appoggio per le sigle, rispettivamente, di lingua e bandiera
     arrayLang: [],
     arrayFlag: [],
-    //Array di appoggio utilizzato per le lingue senza bandiera
-    arrayLangNoFlag: [],
+    //Oggetto di appoggio utilizzato per la corrispondenza tra lingue senza bandiera e nome lingua per esteso
+    objLangNoFlag: {},
+
     //Chiamata axios principare dove si richiede la lista dei film
     fetchData(url) {
         axios.get(url)
@@ -28,6 +30,7 @@ export const state = reactive({
                     this.movies.push(movie);
                 });
                 console.log(this.movies);
+
             })
             .catch(error => {
                 console.error(error);
@@ -53,7 +56,9 @@ export const state = reactive({
 
                 //Richiamo la funzione per correggere alcune bandiere
                 this.adjustmentFlag();
-                console.log(this.LtoF);
+               
+
+
             })
             .catch(error => {
                 console.error(error);
@@ -83,14 +88,22 @@ export const state = reactive({
             .then(response => {
                 console.log(response.data);
                 response.data.forEach(lang => {
-                    this.arrayLangNoFlag.push(lang);
+                    //Abbino come proprietà e valore la sigla dell'iso639 al nome esteso della lingua nell'oggetto d'appoggio
+                    const iso6391 = lang.iso_639_1;
+                    const engName = lang.english_name;
+                    this.objLangNoFlag[iso6391] = engName;
                 });
 
+                console.log(this.objLangNoFlag);
+                    
             })
             .catch(error => {
                 console.error(error);
             })
 
     }
-    
-})
+
+}
+
+
+)
