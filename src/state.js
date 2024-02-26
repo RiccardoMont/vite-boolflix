@@ -13,9 +13,6 @@ export const state = reactive({
     movies: [],
     //Oggetto d'appoggio utilizzato per la corrispondenza tra lingua e bandiera
     LtoF: {},
-    //Arrays di appoggio per le sigle, rispettivamente, di lingua e bandiera
-    arrayLang: [],
-    arrayFlag: [],
     //Oggetto di appoggio utilizzato per la corrispondenza tra lingue senza bandiera e nome lingua per esteso
     objLangNoFlag: {},
 
@@ -41,24 +38,16 @@ export const state = reactive({
         axios.get(url)
             .then(response => {
                 response.data.forEach(translation => {
-                    //Scompongo la stringa di "lingua=BANDIERA" in due parti, ognuna nel rispettivo array d'appoggio. Ognuna di queste avrà automaticamente lo stesso index della sua corrispettiva quando ciclata
-                    this.arrayLang.push(translation.slice(0, 2));
-                    this.arrayFlag.push(translation.slice(3, 5).toLowerCase());
+                    //Inserisco la sigla della lingua come nome della proprietà all'oggetto d'appoggio LtoF e gli abbino il valore della sigla della bandiera
 
+                    const langSliced = translation.slice(0, 2);
+                    const flagSliced = translation.slice(3, 5).toLowerCase();
+                    this.LtoF[langSliced] = flagSliced;
                 });
-
-                //Inserisco la sigla della lingua come nome della proprietà all'oggetto d'appoggio LtoF e gli abbino il valore della sigla della bandiera
-                for (let i = 0; i < this.arrayLang.length; i++) {
-
-                    this.LtoF[this.arrayLang[i]] = this.arrayFlag[i];
-
-                };
 
                 //Richiamo la funzione per correggere alcune bandiere
                 this.adjustmentFlag();
                
-
-
             })
             .catch(error => {
                 console.error(error);
