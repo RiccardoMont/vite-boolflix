@@ -11,8 +11,7 @@ export default {
         }
     },
     methods: {
-        initialApi() {
-            
+        initialApi() {   
             state.base_api_urls.forEach(url => {
                 console.log(url)
                 const newResearch = `${url}troy`;
@@ -26,7 +25,6 @@ export default {
 
     },
     mounted() {
-        
         this.initialApi()
         state.fetchLangtoFlag(state.translations_api_url);
         state.fetchLanguages(state.lang_api_url);
@@ -43,6 +41,9 @@ export default {
             <h3>{{ movie.title || movie.name }}</h3>
             <i>{{ movie.original_title || movie.original_name }}</i>
             <br>
+            <img v-if="movie.poster_path !== null" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="">
+            <img v-else src="../assets/locandina-generica.png" alt="">
+            <br>
             <span v-if="state.LtoF[movie.original_language] !== undefined"
                 :class="'fi fi-' + state.LtoF[movie.original_language]"></span>
             <h5 v-else>Language: {{ state.objLangNoFlag[movie.original_language] }}</h5>
@@ -54,4 +55,10 @@ export default {
 
     </ul>
 </template>
-<style></style>
+<style scoped>
+
+img{
+    width: 185px;
+}
+
+</style>
