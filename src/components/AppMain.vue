@@ -29,8 +29,8 @@ export default {
 <template>
     <ul>
         <li v-for="movie in state.movies">
-            <h3>{{ movie.title }}</h3>
-            <i>{{ movie.original_title }}</i>
+            <h3>{{ movie.title || movie.name }}</h3>
+            <i>{{ movie.original_title || movie.original_name }}</i>
             <br>
             <span v-if="state.LtoF[movie.original_language] !== undefined"
                 :class="'fi fi-' + state.LtoF[movie.original_language]"></span>

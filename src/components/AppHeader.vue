@@ -14,8 +14,12 @@ export default {
         ricercaMovie(){
             if(this.movieSearched != ''){
             state.movies = [];
-            const newResearch = `${state.base_api_url}${this.movieSearched}`;
-            state.fetchData(newResearch);
+            state.base_api_urls.forEach(url =>{
+                const newResearch = `${url}${this.movieSearched}`;
+                state.fetchData(newResearch);
+            })
+            //const newResearch = `${state.base_api_url}${this.movieSearched}`;
+            //state.fetchData(newResearch);
             }
         }
     }

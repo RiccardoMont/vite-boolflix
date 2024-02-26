@@ -3,6 +3,10 @@ import axios from "axios";
 
 export const state = reactive({
 
+    base_api_urls: [
+        'https://api.themoviedb.org/3/search/tv?api_key=c57edb92da6d3be4a161139756c3ceae&query=',
+        'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query='
+    ],
 
     api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=troy',
     base_api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=',
