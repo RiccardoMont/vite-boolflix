@@ -6,17 +6,28 @@ export default {
     name: 'AppMain',
     data() {
         return {
-            state
+            state,
+            initial_url_api: ''
         }
     },
     methods: {
-
+        initialApi() {
+            
+            state.base_api_urls.forEach(url => {
+                console.log(url)
+                const newResearch = `${url}troy`;
+                this.initial_url_api = newResearch;
+                state.fetchData(this.initial_url_api);
+            })
+            
+        }
     },
     components: {
 
     },
     mounted() {
-        state.fetchData(state.api_url);
+        
+        this.initialApi()
         state.fetchLangtoFlag(state.translations_api_url);
         state.fetchLanguages(state.lang_api_url);
     },
