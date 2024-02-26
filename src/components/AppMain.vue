@@ -13,7 +13,6 @@ export default {
     methods: {
         initialApi() {   
             state.base_api_urls.forEach(url => {
-                console.log(url)
                 const newResearch = `${url}troy`;
                 this.initial_url_api = newResearch;
                 state.fetchData(this.initial_url_api);
@@ -25,9 +24,10 @@ export default {
 
     },
     mounted() {
-        this.initialApi()
+        this.initialApi();
         state.fetchLangtoFlag(state.translations_api_url);
         state.fetchLanguages(state.lang_api_url);
+        
     },
 
 
@@ -39,7 +39,7 @@ export default {
     <ul>
         <li v-for="movie in state.movies">
             <h3>{{ movie.title || movie.name }}</h3>
-            <i>{{ movie.original_title || movie.original_name }}</i>
+            <p>{{ movie.original_title || movie.original_name }}</p>
             <br>
             <img v-if="movie.poster_path !== null" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="">
             <img v-else src="../assets/locandina-generica.png" alt="">
@@ -49,8 +49,10 @@ export default {
             <h5 v-else>Language: {{ state.objLangNoFlag[movie.original_language] }}</h5>
 
             <br>
-            <strong>{{ movie.vote_average }}</strong>
-
+            <strong>{{ Math.ceil(movie.vote_average/2) }}</strong>
+            <i v-for="starSolid in Math.ceil(movie.vote_average/2)" class="fa-solid fa-star"></i>
+            <i v-for="starRegular in (5 - Math.ceil(movie.vote_average/2))"  class="fa-regular fa-star"></i>
+             
         </li>
 
     </ul>
@@ -61,4 +63,7 @@ img{
     width: 185px;
 }
 
+i {
+    color: rgb(253, 224, 62);
+}
 </style>

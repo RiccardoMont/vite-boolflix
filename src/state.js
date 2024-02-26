@@ -24,13 +24,9 @@ export const state = reactive({
     fetchData(url) {
         axios.get(url)
             .then(response => {
-                console.log(response);
-                console.log(response.data.results);
-                console.log(this.movies);
                 response.data.results.forEach(movie => {
                     this.movies.push(movie);
                 });
-                console.log(this.movies);
 
             })
             .catch(error => {
@@ -51,7 +47,7 @@ export const state = reactive({
 
                 //Richiamo la funzione per correggere alcune bandiere
                 this.adjustmentFlag();
-               
+
             })
             .catch(error => {
                 console.error(error);
@@ -79,7 +75,6 @@ export const state = reactive({
     fetchLanguages(url) {
         axios.get(url)
             .then(response => {
-                console.log(response.data);
                 response.data.forEach(lang => {
                     //Abbino come proprietà e valore la sigla dell'iso639 al nome esteso della lingua nell'oggetto d'appoggio
                     const iso6391 = lang.iso_639_1;
@@ -87,16 +82,10 @@ export const state = reactive({
                     this.objLangNoFlag[iso6391] = engName;
                 });
 
-                console.log(this.objLangNoFlag);
-                    
             })
             .catch(error => {
                 console.error(error);
             })
 
     }
-
-}
-
-
-)
+})
