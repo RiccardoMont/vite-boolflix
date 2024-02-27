@@ -7,11 +7,7 @@ export const state = reactive({
         'https://api.themoviedb.org/3/search/tv?api_key=c57edb92da6d3be4a161139756c3ceae&query=',
         'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query='
     ],
-
-    api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=troy',
-    base_api_url: 'https://api.themoviedb.org/3/search/movie?api_key=c57edb92da6d3be4a161139756c3ceae&query=',
     lang_api_url: 'https://api.themoviedb.org/3/configuration/languages?api_key=c57edb92da6d3be4a161139756c3ceae',
-    country_api_url: 'https://api.themoviedb.org/3/configuration/countries?api_key=c57edb92da6d3be4a161139756c3ceae',
     translations_api_url: 'https://api.themoviedb.org/3/configuration/primary_translations?api_key=c57edb92da6d3be4a161139756c3ceae',
     //Array d'appoggio per la lista di film richiesta
     movies: [],

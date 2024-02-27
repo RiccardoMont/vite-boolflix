@@ -1,36 +1,40 @@
 <script>
 import { state } from '../state';
+import AppSearchbar from './AppSearchbar.vue';
+import AppLogo from './AppLogo.vue';
+import AppNav from './AppNav.vue';
 
 export default {
     name: 'AppHeader',
-    data(){
-        return{
-            state,
-            movieSearched: ''
+    data() {
+        return {
+
         }
     },
-    methods: {
-
-        ricercaMovie(){
-            if(this.movieSearched != ''){
-            state.movies = [];
-            state.base_api_urls.forEach(url =>{
-                const newResearch = `${url}${this.movieSearched}`;
-                state.fetchData(newResearch);
-            })
-            //const newResearch = `${state.base_api_url}${this.movieSearched}`;
-            //state.fetchData(newResearch);
-            }
-        }
+    components: {
+        AppLogo,
+        AppNav,
+        AppSearchbar
     }
 }
 </script>
 <template>
-    <label for="search">Inserisci un titolo</label>
-    <br>
-    <input @keyup.enter="ricercaMovie" v-model="movieSearched" type="search" id="search">
-    <p>{{ movieSearched }}</p>
-
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center">
+                <AppLogo></AppLogo>
+                <AppNav></AppNav>
+            </div>
+            <AppSearchbar></AppSearchbar>
+        </div>
+    </div>
 </template>
-<style>
+<style scoped>
+
+.container{
+    max-width: 1440px;
+}
+
+
+
 </style>

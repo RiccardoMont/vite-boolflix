@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*ROOT*/
+:root{
+    --bg-blueblack: #001533;
+    --acid-green: #00e165;
+    --pure-white: #ffffff;
+}
+
+
+/*COLS*/
+
+.col-3{
+    width: calc((100%/12)*3);
+}
+
+
+
+
+
+
+/*UTILITY*/
+body {
+    background-color: var(--bg-blueblack);
+    font-family: "Montserrat", sans-serif;
+}
+
+.container{
+    width: 90%;
+    max-width: 1176px;
+    margin: auto;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.d-flex{
+    display: flex;
+}
+
+.d-none{
+    display: none;
+}
+
+.d-inline-block{
+    display: inline-block;
+}
+
+.justify-content-between{
+    justify-content: space-between;
+}
+
+.align-items-center{
+    align-items: center;
+}
