@@ -31,9 +31,9 @@ export default {
 </script>
 <template>
     <div class="d-flex justify-content-between align-items-center research">
-        <i @click="toggleSearchbar" class="fa-solid fa-magnifying-glass" id="toogleSearchbar"></i>
         <input @keyup.enter="ricercaMovie" v-model="movieSearched" type="search" id="searchbar"
             placeholder="Movies, series and..." :class="classToggle">
+        <i @click="toggleSearchbar" class="fa-solid fa-magnifying-glass" id="toogleSearchbar"></i>
     </div>
 </template>
 <style scoped>
@@ -41,10 +41,6 @@ export default {
 
     i {
         color: var(--acid-green);
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
 
     }
 
