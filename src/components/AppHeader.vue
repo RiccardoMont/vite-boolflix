@@ -35,6 +35,10 @@ export default {
     max-width: 1440px;
 }
 
+.row {
+    justify-content: space-between;
+}
+
 
 
 </style>
